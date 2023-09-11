@@ -1,0 +1,35 @@
+# pg-tileserv Docker Compose example setup.
+#
+# To build/run, see README.md
+#
+version: "3.9"
+
+services:
+  pg2b3dm:
+    build: ./pg2b3dm
+
+    container_name: pg2b3dm
+
+    volumes:
+      - ./data:/work
+
+    ports:
+      - 5400:5400
+
+  pg_db:
+    build: ./pg
+
+    container_name: pg_db
+
+    volumes:
+      - ./data:/work
+      - pg_tileserv_db:/var/lib/postgresql/data
+
+    env_file:
+      - ./pg/pg.env
+
+    ports:
+      - 5418:5432
+
+volumes:
+  pg_db:

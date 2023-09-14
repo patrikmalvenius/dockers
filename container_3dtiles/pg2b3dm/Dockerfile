@@ -1,12 +1,15 @@
-FROM ubuntu:22.04
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 
-WORKDIR data
+WORKDIR data/pg3bdm_app
 
-COPY data/ . 
-COPY ./init.sh /docker-entrypoint-initdb.d/init.sh
+
+COPY ./init.sh ./
+ENV PATH="${PATH}:/root/.dotnet/tools"
+
 RUN apt update && \
-    apt-get install -y dotnet-sdk-6.0
-    #apt -y install osm2pgsql && \
+    #apt-get install -y dotnet-sdk-6.0 && \
+    dotnet tool install -g pg2b3dm  && \ 
+    dotnet tool install -g tesselate_building
     #apt -y install openjdk-11-jre-headless && \
     #apt -y install wget && \
     #apt -y install unzip && \

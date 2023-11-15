@@ -39,7 +39,7 @@ update batiment set shaders = '{
     ]
   }
 }';
---if i import in 4978 tesselation wont work bc triangles not planar
+--if i import in 4978 extrude wont work bc triangles not planar
 update batiment set geom_triangle = st_transform(geom_triangle, 4978);
 
 CREATE INDEX ON batiment USING gist(st_centroid(st_envelope(geom_triangle)));

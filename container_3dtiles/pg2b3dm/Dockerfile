@@ -9,7 +9,8 @@ ENV PATH="${PATH}:/root/.dotnet/tools"
 RUN apt update && \
     #apt-get install -y dotnet-sdk-6.0 && \
     dotnet tool install -g pg2b3dm  && \ 
-    dotnet tool install -g tesselate_building
+    dotnet tool install -g tesselate_building && \
+    dotnet tool install -g i3dm.export
     #apt -y install openjdk-11-jre-headless && \
     #apt -y install wget && \
     #apt -y install unzip && \

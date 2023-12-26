@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  pg2b3dm:
+    build: ./pg2b3dm
+    tty: true
+    container_name: pg2b3dm
+
+    volumes:
+      - ./data:/data
+
+    ports:
+      - 5400:5400
+    depends_on:
+      - pg_db
+
+  pg_db:
+    build: ./pg
+
+    container_name: pg_db
+
+    volumes:
+      - ./data:/data
+      - ./data/pg_db:/var/lib/postgresql/data
+
+    env_file:
+      - ./pg/pg.env
+
+    ports:
+      - 5418:5432
+
+  entwine:
+    build: ./entwine
+    image: entwine_local
+    tty: true
+    volumes:
+      - ./data:/data
+  ept_tools:
+    build: ./ept_tools
+    image: ept_tools
+    tty: true
+    volumes:
+      - ./data:/data

@@ -1,0 +1,19 @@
+{
+  "pipeline": [
+    "https://storage.sbg.cloud.ovh.net/v1/AUTH_63234f509d6048bca3c9fd7928720ca1/ppk-lidar/EQ/LHD_FXX_0380_6264_PTS_C_LAMB93_IGN69.copc.laz",
+    {
+      "type": "filters.range",
+      "limits": "Classification[4:5]"
+    },
+    {
+      "type": "filters.merge"
+    },
+    {
+      "type": "writers.las",
+      "compression": "true",
+      "minor_version": "2",
+      "dataformat_id": "3",
+      "filename": "../data/out/veg.laz"
+    }
+  ]
+}
